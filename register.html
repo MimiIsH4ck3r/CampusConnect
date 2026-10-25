@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | CampusConnect</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/auth.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="navbar-brand">CampusConnect</a>
+        <a href="login.html" class="nav-link">Log in instead</a>
+      </div>
+    </nav>
+
+    <main class="auth-container">
+      <section class="auth-form">
+        <h1>Join CampusConnect</h1>
+
+        <form id="register-form">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="Choose a username"
+              autocomplete="username"
+              minlength="3"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Create a password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+            <p class="field-note">Use at least 6 characters.</p>
+          </div>
+
+          <div class="mb-3">
+            <label for="confirm-password" class="form-label">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="Enter your password again"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">
+            Create Account
+          </button>
+
+          <p id="form-message" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <p class="auth-switch">
+          Already have an account?
+          <a href="login.html">Log in</a>
+        </p>
+
+        <a href="index.html" class="back-link">← Back to home</a>
+      </section>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="./script/firebase-config.js"></script>
+    <script src="./script/auth.js"></script>
+  </body>
+</html>

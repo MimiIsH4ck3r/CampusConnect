@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusConnect</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/home.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a href="index.html" class="navbar-brand">CampusConnect</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./clubs.html" data-auth-required
+                >Explore Clubs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./events.html" data-auth-required
+                >Events</a
+              >
+            </li>
+            <li class="nav-item">
+              <button id="logout-button" class="nav-link btn" type="button">
+                Login
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero -->
+      <section id="hero">
+        <div class="align-items-center row g-4">
+          <div id="guest-hero" class="col-lg-8 hero-text hidden">
+            <p class="hero-label">YOUR SCHOOL, YOUR COMMUNITY</p>
+
+            <h1>
+              Where you see <br />
+              <span>events and clubs.</span>
+            </h1>
+
+            <p class="hero-description">
+              Discover school clubs, join activities, and find events that match
+              your interests.
+            </p>
+
+            <a href="./clubs.html" class="btn btn-primary" data-auth-required
+              >Explore Clubs</a
+            >
+          </div>
+
+          <div id="student-hero" class="col-lg-8 hero-text hidden">
+            <div class="student-hero-slide">
+              <div id="student-slide" class="student-slide"></div>
+              <div id="student-slide-dots" class="slide-dots"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 hero-image">
+            <img src="" alt="hero img" class="img-fluid" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Explore Clubs -->
+      <section id="clubs" class="content-section">
+        <div class="section-heading">
+          <div>
+            <h1>Explore Clubs</h1>
+            <p>Find a community that shares your interests.</p>
+          </div>
+
+          <a href="clubs.html" class="section-link" data-auth-required
+            >View All Clubs →</a
+          >
+        </div>
+
+        <div id="club-list" class="row g-4">
+          <!-- Example club. Load real club data from Firestore later. -->
+          <div class="col-12 col-lg-4 col-md-6">
+            <div class="club-card">
+              <div class="club-card-top">
+                <div class="club-icon technology">
+                  <i class=""></i>
+                </div>
+
+                <span class="club-category">Technology</span>
+              </div>
+              <h3 class="card-title">Byte Club</h3>
+              <p class="description">
+                Explore coding, technology, and creative projects with other
+                tech enthusiasts.
+              </p>
+              <div class="club-card-footer">
+                <span class="club-members"> 38 sample members </span>
+
+                <a href="club.html" class="club-explore" data-auth-required>
+                  Explore ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 col-md-6">
+            <div class="club-card">
+              <div class="club-card-top">
+                <div class="club-icon arts">
+                  <i class=""></i>
+                </div>
+
+                <span class="club-category">Arts</span>
+              </div>
+              <h3 class="card-title">Creative Corner</h3>
+              <p class="description">
+                Draw, design, craft, and share your ideas with fellow artists.
+              </p>
+              <div class="club-card-footer">
+                <span class="club-members"> 38 sample members </span>
+
+                <a href="club.html" class="club-explore" data-auth-required>
+                  Explore ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Upcoming Events -->
+      <section id="events" class="content-section">
+        <div class="section-heading">
+          <div>
+            <h1>Upcoming Events</h1>
+            <p>See what's happening around school.</p>
+          </div>
+
+          <a href="events.html" class="section-link" data-auth-required
+            >View All Events →</a
+          >
+        </div>
+
+        <div id="event-list">
+          <!-- Example event. Load real event data from Firestore later. -->
+          <div class="row g-4">
+            <div class="col-12 col-lg-4 col-md-6">
+              <div class="event-card">
+                <div class="event-date">
+                  <span class="event-month">MAR</span>
+                  <span class="event-day">15-17</span>
+                </div>
+
+                <div class="event-details">
+                  <span class="event-time">10:00 AM - 5:00 PM</span>
+                  <h3 class="card-title">Byte Club Hackathon</h3>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="event-organizer">by Byte Club ·</span>
+                    <span class="event-location">Main Hall</span>
+                  </div>
+                </div>
+
+                <a href="events.html" class="card-link" data-auth-required
+                  >View Event →</a
+                >
+              </div>
+            </div>
+            <div class="col-12 col-lg-4 col-md-6">
+              <div class="event-card">
+                <div class="event-date">
+                  <span class="event-month">APR</span>
+                  <span class="event-day">05</span>
+                </div>
+
+                <div class="event-details">
+                  <span class="event-time">2:00 PM - 6:00 PM</span>
+                  <h3 class="card-title">Creative Corner Art Show</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="event-organizer">by Creative Corner ·</span>
+                    <span class="event-location">Art Gallery</span>
+                  </div>
+                </div>
+
+                <a href="events.html" class="card-link" data-auth-required
+                  >View Event →</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-content">
+        <div>
+          <h2>CampusConnect</h2>
+          <p>Find your people. Find your thing.</p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#hero">Back to Top</a>
+          <a href="login.html">Log In</a>
+          <a href="register.html">Sign Up</a>
+        </nav>
+
+        <p class="copyright">&copy; 2026 CampusConnect</p>
+      </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="./script/firebase-config.js"></script>
+    <script src="./script/home.js"></script>
+    <script src="./script/guest.js"></script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+/* Login and registration layout */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  padding: 2rem 1rem;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 430px;
+  padding: 2rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.auth-form h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-form > p {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form .form-label {
+  color: var(--text);
+}
+
+.auth-form .form-control {
+  padding: 0.7rem;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.field-note {
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+}
+
+.form-message {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .auth-form {
+    padding: 1.5rem;
+  }
+}
