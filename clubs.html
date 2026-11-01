@@ -13,6 +13,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
 
     <link rel="stylesheet" href="./style/main.css" />
     <link rel="stylesheet" href="./style/home.css" />
@@ -84,7 +88,7 @@
               Search clubs
             </label>
 
-            <i class="bi bi-search" aria-hidden="true"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
 
             <input
               type="search"
@@ -155,201 +159,14 @@
 
           <!-- Results -->
           <div class="club-results-heading">
-            <h2 id="results-heading">All clubs</h2>
-            <span id="club-count" aria-live="polite">6 clubs</span>
+            <h2 id="results-heading"></h2>
+            <span id="club-count"></span>
           </div>
 
-          <div id="club-list" class="row g-4">
-            <!-- Technology -->
-            <div
-              class="col-12 col-md-6 col-lg-4 club-result"
-              data-category="technology"
-            >
-              <div class="club-card">
-                <div class="club-card-top">
-                  <div class="club-icon technology">
-                    <i class="bi bi-code-slash" aria-hidden="true"></i>
-                  </div>
-                  <span class="club-category">Technology</span>
-                </div>
+          <div id="club-list" class="row g-4"></div>
 
-                <h3 class="card-title">Byte Club</h3>
-                <p class="description">
-                  Build websites, experiment with code, and turn your weirdest
-                  ideas into real projects.
-                </p>
-
-                <div class="club-card-footer">
-                  <span class="club-members">
-                    <i class="bi bi-people" aria-hidden="true"></i>
-                    38 sample members
-                  </span>
-                  <a href="club.html" class="club-explore" data-auth-required>
-                    Explore ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Arts -->
-            <div
-              class="col-12 col-md-6 col-lg-4 club-result"
-              data-category="arts"
-            >
-              <div class="club-card">
-                <div class="club-card-top">
-                  <div class="club-icon arts">
-                    <i class="bi bi-palette" aria-hidden="true"></i>
-                  </div>
-                  <span class="club-category">Arts</span>
-                </div>
-
-                <h3 class="card-title">Creative Corner</h3>
-                <p class="description">
-                  A relaxed space for sketching, design, crafts, and making
-                  wonderfully messy things.
-                </p>
-
-                <div class="club-card-footer">
-                  <span class="club-members">
-                    <i class="bi bi-people" aria-hidden="true"></i>
-                    26 sample members
-                  </span>
-                  <a href="club.html" class="club-explore" data-auth-required>
-                    Explore ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Sports -->
-            <div
-              class="col-12 col-md-6 col-lg-4 club-result"
-              data-category="sports"
-            >
-              <div class="club-card">
-                <div class="club-card-top">
-                  <div class="club-icon sports">
-                    <i class="bi bi-activity" aria-hidden="true"></i>
-                  </div>
-                  <span class="club-category">Sports</span>
-                </div>
-
-                <h3 class="card-title">The Rally</h3>
-                <p class="description">
-                  Find your team, try a new sport, and get moving without taking
-                  yourself too seriously.
-                </p>
-
-                <div class="club-card-footer">
-                  <span class="club-members">
-                    <i class="bi bi-people" aria-hidden="true"></i>
-                    42 sample members
-                  </span>
-                  <a href="club.html" class="club-explore" data-auth-required>
-                    Explore ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Community -->
-            <div
-              class="col-12 col-md-6 col-lg-4 club-result"
-              data-category="community"
-            >
-              <div class="club-card">
-                <div class="club-card-top">
-                  <div class="club-icon community">
-                    <i class="bi bi-flower1" aria-hidden="true"></i>
-                  </div>
-                  <span class="club-category">Community</span>
-                </div>
-
-                <h3 class="card-title">Green Steps</h3>
-                <p class="description">
-                  Small actions, shared effort: campus clean-ups, sustainability
-                  projects, and greener habits.
-                </p>
-
-                <div class="club-card-footer">
-                  <span class="club-members">
-                    <i class="bi bi-people" aria-hidden="true"></i>
-                    31 sample members
-                  </span>
-                  <a href="club.html" class="club-explore" data-auth-required>
-                    Explore ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Technology -->
-            <div
-              class="col-12 col-md-6 col-lg-4 club-result"
-              data-category="technology"
-            >
-              <div class="club-card">
-                <div class="club-card-top">
-                  <div class="club-icon science">
-                    <i class="bi bi-lightbulb" aria-hidden="true"></i>
-                  </div>
-                  <span class="club-category">Technology</span>
-                </div>
-
-                <h3 class="card-title">Curiosity Lab</h3>
-                <p class="description">
-                  Ask big questions, test tiny experiments, and make science a
-                  hands-on adventure.
-                </p>
-
-                <div class="club-card-footer">
-                  <span class="club-members">
-                    <i class="bi bi-people" aria-hidden="true"></i>
-                    22 sample members
-                  </span>
-                  <a href="club.html" class="club-explore" data-auth-required>
-                    Explore ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Arts -->
-            <div
-              class="col-12 col-md-6 col-lg-4 club-result"
-              data-category="arts"
-            >
-              <div class="club-card">
-                <div class="club-card-top">
-                  <div class="club-icon performance">
-                    <i class="bi bi-mic" aria-hidden="true"></i>
-                  </div>
-                  <span class="club-category">Arts</span>
-                </div>
-
-                <h3 class="card-title">Open Stage</h3>
-                <p class="description">
-                  Music, performance, writing, and a supportive place to share
-                  what you create.
-                </p>
-
-                <div class="club-card-footer">
-                  <span class="club-members">
-                    <i class="bi bi-people" aria-hidden="true"></i>
-                    19 sample members
-                  </span>
-                  <a href="club.html" class="club-explore" data-auth-required>
-                    Explore ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Empty state -->
           <div id="no-clubs" class="no-results hidden" role="status">
-            <i class="bi bi-search" aria-hidden="true"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
             <h3>No clubs found</h3>
             <p>Try another search or choose a different category.</p>
             <button id="reset-filters" class="btn btn-primary" type="button">
