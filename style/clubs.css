@@ -1,86 +1,168 @@
-/* Club cards */
-.club-card {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 20px;
-  min-height: 250px;
-  transition: 0.1s ease-in;
+/* Club directory heading */
+.directory-heading {
+  padding: 3rem 0 2rem;
 }
 
-.club-card:hover {
-  border-color: var(--purple);
-  transform: translateY(-2px);
+.directory-heading h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: bold;
+  margin-bottom: 0.75rem;
 }
 
-.club-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 18px;
+.directory-heading h1 span {
+  color: var(--purple);
 }
 
-.club-icon {
-  width: 58px;
-  height: 58px;
+/* Search bar */
+.club-search {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 17px;
-  font-size: 24px;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
 
+.club-search > i {
+  color: var(--muted);
+  padding-left: 0.25rem;
+}
+
+.club-search .form-control {
+  border: none;
+  min-width: 0;
+}
+
+.club-search .form-control:focus {
+  box-shadow: none;
+}
+
+.club-search .btn {
+  white-space: nowrap;
+}
+
+/* Categories */
+.category-section {
+  margin: 2rem 0;
+}
+
+.category-section h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.category-button {
+  background-color: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.category-button:hover {
+  border-color: var(--purple);
+  color: var(--text);
+}
+
+.category-button.active {
+  background-color: var(--purple);
+  border-color: var(--purple);
+  color: var(--text-dark);
+}
+
+/* Results heading */
+.club-results-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.club-results-heading h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.club-results-heading span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Club icon variations */
+.club-icon.arts {
+  background-color: #3b2b3e;
+  color: #f0a9d5;
+}
+
+.club-icon.sports {
+  background-color: #263c3b;
+  color: #86c9a3;
+}
+
+.club-icon.community {
+  background-color: #263a40;
+  color: #86d9c1;
+}
+
+.club-icon.science {
+  background-color: #393431;
+  color: #ffdb86;
+}
+
+.club-icon.performance {
   background-color: #302b4a;
   color: #b6a2ff;
 }
 
-.club-category {
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.club-card h3 {
-  color: var(--text);
-  font-size: 19px;
-  margin-bottom: 8px;
-}
-
-.club-card p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-.club-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+/* Empty state */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-top: 1rem;
   border-top: 1px solid var(--border);
-  padding-top: 16px;
-  margin-top: auto;
 }
 
-.club-members {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.club-explore {
+.no-results > i {
+  font-size: 2rem;
   color: var(--purple);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
 }
 
-.club-explore:hover {
-  color: var(--text);
+.no-results h3 {
+  margin-top: 1rem;
 }
 
-.browse-categories {
-  padding: 0 0.5rem;
+.no-results p {
+  margin-bottom: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .directory-heading {
+    padding: 2rem 0 1rem;
+  }
+
+  .club-search {
+    flex-wrap: wrap;
+  }
+
+  .club-search .form-control {
+    flex: 1;
+  }
+
+  .club-search .btn {
+    width: 100%;
+  }
+
+  .club-results-heading h2 {
+    font-size: 1.25rem;
+  }
 }

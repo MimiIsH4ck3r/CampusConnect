@@ -61,7 +61,7 @@ function showSlide() {
   const slide = studentSlides[activeSlideIndex];
   studentSlide.innerHTML = `
     <div class="student-slide-top">
-      <span class="hero-label">${slide.tag}</span>
+      <span class="label">${slide.tag}</span>
       <span class="student-club-name">${slide.club}</span>
     </div>
     <h1>${slide.title}</h1>
