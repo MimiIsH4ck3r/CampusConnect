@@ -92,37 +92,32 @@
             </div>
           </div>
 
-          <div class="featured-event">
+          <div class="featured-event" id="next-event-card" hidden>
             <div class="featured-event-date">
-              <span>DEC</span>
-              <strong>12</strong>
-              <small>2026</small>
+              <span id="next-event-month"></span>
+              <strong id="next-event-day"></strong>
+              <small id="next-event-year"></small>
             </div>
 
             <div class="featured-event-details">
-              <span class="event-type">TECHNOLOGY · BYTE CLUB</span>
-              <h3>Campus Hackathon</h3>
-              <p>
-                Build a project, collaborate with other students, and put your
-                coding skills to the test.
-              </p>
+              <span class="event-type" id="next-event-type"></span>
+              <h3 id="next-event-title"></h3>
+              <p id="next-event-description"></p>
 
               <div class="event-meta">
-                <span>
-                  <i class="fa-regular fa-clock"></i>
-                  10:00 AM - 5:00 PM
-                </span>
-                <span>
-                  <i class="fa-solid fa-location-dot"></i>
-                  Main Hall
-                </span>
+                <span id="next-event-time"></span>
+                <span id="next-event-location"></span>
               </div>
 
-              <a href="./event.html?id=1" class="btn btn-primary">
+              <a id="next-event-link" class="btn btn-primary">
                 View Event Details
               </a>
             </div>
           </div>
+
+          <p id="no-next-event" class="history-note" hidden>
+            No upcoming events are scheduled right now.
+          </p>
         </section>
 
         <!-- Other upcoming events -->
@@ -135,7 +130,7 @@
             <span class="event-section-note">Upcoming</span>
           </div>
 
-          <div class="event-timeline"></div>
+          <div class="event-timeline" id="upcoming-event-list"></div>
         </section>
 
         <!-- Past event history -->
@@ -148,49 +143,7 @@
             <span class="event-section-note">Completed</span>
           </div>
 
-          <div class="event-timeline past-events">
-            <div class="event-row">
-              <div class="timeline-date">
-                <span>OCT</span>
-                <strong>15</strong>
-                <small>2026</small>
-              </div>
-
-              <div class="timeline-content">
-                <span class="event-type">COMMUNITY · GREEN STEPS</span>
-                <h3>Campus Clean-up Day</h3>
-                <p>
-                  Students worked together on small actions to make shared
-                  school spaces cleaner.
-                </p>
-                <span class="event-status">
-                  <i class="fa-regular fa-circle-check"></i>
-                  Completed
-                </span>
-              </div>
-            </div>
-
-            <div class="event-row">
-              <div class="timeline-date">
-                <span>SEP</span>
-                <strong>20</strong>
-                <small>2026</small>
-              </div>
-
-              <div class="timeline-content">
-                <span class="event-type">ARTS · OPEN STAGE</span>
-                <h3>Welcome Open Mic</h3>
-                <p>
-                  Students shared music, poetry, and performances to welcome the
-                  new school year.
-                </p>
-                <span class="event-status">
-                  <i class="fa-regular fa-circle-check"></i>
-                  Completed
-                </span>
-              </div>
-            </div>
-          </div>
+          <div class="event-timeline past-events"></div>
         </section>
       </div>
     </main>

@@ -83,6 +83,10 @@ a:hover {
   color: var(--purple);
 }
 
+.navbar-nav .nav-link:active {
+  color: var(--purple-dark);
+}
+
 .navbar-toggler {
   border-color: var(--border);
 }

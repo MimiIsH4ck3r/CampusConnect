@@ -1,0 +1,404 @@
+.detail-container {
+  padding-top: 35px;
+  padding-bottom: 70px;
+  min-height: 80vh;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 22px;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--purple);
+}
+
+.detail-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.detail-section {
+  margin-bottom: 38px;
+}
+
+.detail-section h2,
+.sidebar-panel h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.detail-section p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.detail-category {
+  display: inline-block;
+  color: var(--purple);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.muted-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 35px;
+  margin-top: 35px;
+}
+
+.detail-main {
+  min-width: 0;
+}
+
+.detail-sidebar {
+  min-width: 0;
+}
+
+.sidebar-panel {
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+/* Club*/
+
+.club-heading {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.club-heading-main {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.club-heading h1,
+.event-heading h1 {
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.club-heading p,
+.event-heading p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.detail-icon {
+  width: 85px;
+  height: 85px;
+  flex-shrink: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.3rem;
+  color: var(--purple);
+}
+
+.join-button {
+  flex-shrink: 0;
+  min-width: 130px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.activity-item > i {
+  font-size: 1.5rem;
+  color: var(--purple);
+  background: var(--surface-2);
+  padding: 12px;
+  width: 50px;
+  border-radius: 10px;
+}
+
+.activity-item h3,
+.organizer-info h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.activity-item p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.activity-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.gallery-placeholder {
+  min-height: 150px;
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.gallery-placeholder i {
+  font-size: 2rem;
+}
+
+/* Event*/
+
+.event-banner {
+  overflow: hidden;
+}
+
+.event-cover {
+  width: 100%;
+  height: 280px;
+  background: var(--surface-2);
+}
+
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+}
+
+.cover-placeholder i {
+  font-size: 3rem;
+}
+
+.event-heading {
+  padding: 28px;
+}
+
+.event-timeline {
+  border-left: 2px solid var(--border);
+  margin-left: 8px;
+  padding-left: 25px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--purple);
+  border-radius: 50%;
+  left: -32px;
+  top: 5px;
+}
+
+.timeline-time {
+  display: inline-block;
+  color: var(--purple);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.timeline-item h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.timeline-item p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.organizer-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.organizer-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--surface-2);
+  color: var(--purple);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.organizer-info p {
+  margin: 0;
+}
+
+.registration-status {
+  display: inline-block;
+  color: var(--green);
+  background: rgba(163, 255, 209, 0.08);
+  border: 1px solid rgba(163, 255, 209, 0.2);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  margin-bottom: 18px;
+}
+
+.registration-panel .info-item {
+  margin-bottom: 22px;
+}
+
+.register-button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.registration-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+/* Info items */
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item > i {
+  font-size: 1.2rem;
+  color: var(--purple);
+  margin-top: 2px;
+}
+
+.info-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-item span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.info-item strong {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--purple);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.contact-link:hover {
+  color: var(--purple-dark);
+}
+
+@media (max-width: 768px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .club-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .club-heading-main {
+    align-items: flex-start;
+  }
+
+  .join-button {
+    width: 100%;
+  }
+
+  .event-cover {
+    height: 200px;
+  }
+
+  .sidebar-panel {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-container {
+    padding-top: 22px;
+  }
+
+  .club-heading {
+    padding: 20px;
+  }
+
+  .club-heading-main {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .detail-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 1.8rem;
+  }
+
+  .event-heading {
+    padding: 20px;
+  }
+
+  .activity-gallery {
+    grid-template-columns: 1fr;
+  }
+}

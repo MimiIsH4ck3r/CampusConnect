@@ -89,7 +89,6 @@ async function loadStudentSlides() {
       db.collection("events").get(),
     ]);
 
-    // Prepare the 3 club slides
     const clubSlides = clubSnapshot.docs.map((doc) => {
       const club = doc.data();
 
@@ -104,7 +103,6 @@ async function loadStudentSlides() {
       };
     });
 
-    // Find upcoming events
     const now = new Date();
 
     const upcomingEvents = eventSnapshot.docs

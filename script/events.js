@@ -4,8 +4,57 @@ const upcomingContainer = document
 const pastContainer = document
   .getElementById("event-history")
   .getElementsByClassName("event-timeline")[0];
+const nextEventCard = document.getElementById("next-event-card");
+const noNextEvent = document.getElementById("no-next-event");
+
+function showNextEvent(event) {
+  const startAt = event.startAt.toDate();
+  const endAt = event.endAt.toDate();
+
+  document.getElementById("next-event-month").textContent = startAt
+    .toLocaleString("en-US", { month: "short" })
+    .toUpperCase();
+  document.getElementById("next-event-day").textContent = startAt.getDate();
+  document.getElementById("next-event-year").textContent =
+    startAt.getFullYear();
+  document.getElementById("next-event-type").textContent = [
+    event.category,
+    event.organizer,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  document.getElementById("next-event-title").textContent =
+    event.title || "Untitled event";
+  document.getElementById("next-event-description").textContent =
+    event.description || "No description available.";
+  const timeElement = document.getElementById("next-event-time");
+  const timeIcon = document.createElement("i");
+  timeIcon.className = "fa-regular fa-clock";
+  timeElement.replaceChildren(timeIcon);
+  timeElement.append(
+    ` ${startAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} - ${endAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`,
+  );
+
+  const locationElement = document.getElementById("next-event-location");
+  const locationIcon = document.createElement("i");
+  locationIcon.className = "fa-solid fa-location-dot";
+  locationElement.replaceChildren(locationIcon);
+  locationElement.append(` ${event.location || "Location not specified"}`);
+  document.getElementById("next-event-link").href =
+    `./event.html?id=${encodeURIComponent(event.id)}`;
+  nextEventCard.hidden = false;
+  noNextEvent.hidden = true;
+}
 
 function showEvents(eventList, container) {
+  if (eventList.length === 0) {
+    container.innerHTML =
+      container === upcomingContainer
+        ? '<p class="history-note">No additional upcoming events.</p>'
+        : '<p class="history-note">No past events to display.</p>';
+    return;
+  }
+
   container.innerHTML = eventList
     .map(
       (event) => `
@@ -64,10 +113,24 @@ async function loadEvents() {
       .filter((event) => event.endAt.toDate() < now)
       .sort((a, b) => b.startAt.toDate() - a.startAt.toDate());
 
-    showEvents(upcomingEvents, upcomingContainer);
+    if (upcomingEvents.length > 0) {
+      showNextEvent(upcomingEvents[0]);
+      showEvents(upcomingEvents.slice(1), upcomingContainer);
+    } else {
+      nextEventCard.hidden = true;
+      noNextEvent.hidden = false;
+      showEvents([], upcomingContainer);
+      upcomingContainer.querySelector(".history-note").textContent =
+        "No upcoming events to display.";
+    }
+
     showEvents(pastEvents, pastContainer);
   } catch (error) {
     console.error("Could not load events:", error);
+    nextEventCard.hidden = true;
+    noNextEvent.textContent =
+      "We couldn't load upcoming events. Please try again later.";
+    noNextEvent.hidden = false;
     upcomingContainer.innerHTML =
       "<p>We couldn't load upcoming events. Please try again later.</p>";
     pastContainer.innerHTML =
