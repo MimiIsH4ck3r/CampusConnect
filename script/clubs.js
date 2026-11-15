@@ -67,13 +67,13 @@ function showClubs() {
             <h3 class="card-title">${club.name || "Unnamed club"}</h3>
 
             <p class="description">
-              ${club.description || "No description available."}
+              ${club.shortDescription || "No description available."}
             </p>
 
             <div class="club-card-footer">
               <span class="club-members">
                 <i class="fa-solid fa-user-group"></i>
-                ${club.memberCount ?? 0} sample members
+                ${club.memberCount ?? 0}  members
               </span>
 
               <a
@@ -95,10 +95,7 @@ async function loadClubs() {
   clubList.innerHTML = "<p>Loading clubs...</p>";
 
   try {
-    const snapshot = await db
-      .collection("clubs")
-      .where("active", "==", true)
-      .get();
+    const snapshot = await db.collection("clubs").get();
 
     clubs = snapshot.docs.map((doc) => ({
       id: doc.id,

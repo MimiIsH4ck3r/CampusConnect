@@ -29,11 +29,6 @@ async function loadClubData() {
           return;
         }
       });
-    if (clubData.active === false) {
-      document.body.innerHTML =
-        "<h1>Club Not Found</h1><p>The requested club does not exist or is not active.</p>";
-      return;
-    }
 
     clubName.textContent = clubData.name || "Unnamed Club";
     clubDescription.textContent =
@@ -51,7 +46,7 @@ async function loadClubData() {
           <i class="fa-solid fa-arrow-circle-right"></i>
           <div>
             <h3>${activity.split(";")[0]}</h3>
-            <p>${activity.split(";")[1]}</p>
+            <p>${activity.split(";")[1] || ""}</p>
           </div>
         </div>`,
         )

@@ -108,7 +108,6 @@ async function loadStudentSlides() {
     const upcomingEvents = eventSnapshot.docs
       .map((doc) => {
         const event = doc.data();
-
         let startDate = null;
 
         if (event.startAt?.toDate) {
