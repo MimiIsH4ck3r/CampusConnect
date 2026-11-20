@@ -83,7 +83,7 @@ a:hover {
   color: var(--purple);
 }
 
-.navbar-nav .nav-link:active {
+.navbar-nav .nav-link.active {
   color: var(--purple-dark);
 }
 

@@ -33,6 +33,44 @@
   padding: 0.7rem;
 }
 
+.auth-form .dropdown-toggle {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+  text-align: left;
+}
+
+.auth-form .dropdown-toggle:hover,
+.auth-form .dropdown-toggle:focus,
+.auth-form .dropdown-toggle.show {
+  background-color: var(--surface-2);
+  border-color: var(--purple);
+  color: var(--text);
+}
+
+.auth-form .dropdown-menu {
+  width: 100%;
+  max-height: 14rem;
+  overflow-y: auto;
+  padding: 0.35rem;
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+
+.auth-form .dropdown-item {
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.auth-form .dropdown-item:hover,
+.auth-form .dropdown-item:focus {
+  background-color: var(--surface-2);
+  color: var(--purple);
+}
+
 .auth-switch {
   text-align: center;
   margin-top: 1.5rem;

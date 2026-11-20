@@ -10,6 +10,8 @@ const resetButton = document.getElementById("reset-filters");
 let selectedCategory = "all";
 let clubs = [];
 
+let schoolId = "0001";
+
 function showClubs() {
   const searchText = searchInput.value.trim().toLowerCase();
 
@@ -95,7 +97,10 @@ async function loadClubs() {
   clubList.innerHTML = "<p>Loading clubs...</p>";
 
   try {
-    const snapshot = await db.collection("clubs").get();
+    const snapshot = await db
+      .collection("clubs")
+      .where("schoolId", "==", schoolId)
+      .get();
 
     clubs = snapshot.docs.map((doc) => ({
       id: doc.id,
@@ -146,4 +151,8 @@ resetButton.addEventListener("click", () => {
   showClubs();
 });
 
-loadClubs();
+auth.onAuthStateChanged(async (user) => {
+  const userDoc = await db.collection("users").doc(user.uid).get();
+  if (userDoc) schoolId = userDoc.data().schoolId;
+  loadClubs();
+});

@@ -3,6 +3,8 @@ const navLinks = document.querySelectorAll("[data-section]");
 const sections = document.querySelectorAll(".admin-section");
 const pageTitle = document.getElementById("page-title");
 
+let schoolId = "0001";
+//
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const sectionName = link.dataset.section;
@@ -31,7 +33,6 @@ navLinks.forEach((link) => {
   });
 });
 
-// Mobile sidebar
 document.getElementById("sidebar-toggle").addEventListener("click", () => {
   document.getElementById("admin-sidebar").classList.toggle("open");
 });
@@ -41,6 +42,7 @@ auth.onAuthStateChanged(async (user) => {
     const userDoc = await db.collection("users").doc(user.uid).get();
     if (userDoc) {
       const userRole = userDoc.data().role;
+      schoolId = userDoc.data().schoolId;
 
       if (userRole === 2) {
         console.log("Admin user:", user.email);
@@ -73,7 +75,7 @@ function logout() {
     });
 }
 
-const logoutButton = document.getElementById("logout-button");
+const logoutButton = document.getElementById("admin-logout");
 if (logoutButton) {
   logoutButton.addEventListener("click", logout);
 } else {
@@ -91,9 +93,9 @@ const overviewClubs = document.getElementById("overview-clubs");
 async function loadOverviewData() {
   try {
     const [clubsSnap, usersSnap, eventsSnap] = await Promise.all([
-      db.collection("clubs").get(),
-      db.collection("users").get(),
-      db.collection("events").get(),
+      db.collection("clubs").where("schoolId", "==", schoolId).get(),
+      db.collection("users").where("schoolId", "==", schoolId).get(),
+      db.collection("events").where("schoolId", "==", schoolId).get(),
     ]);
 
     const clubsData = clubsSnap.docs.map((doc) => ({
@@ -398,6 +400,7 @@ async function loadContentList(type) {
   try {
     const snapshot = await db
       .collection(contentTypes[contentType].collection)
+      .where("schoolId", "==", schoolId)
       .get();
     const records = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     contentCache[contentType] = new Map(
@@ -512,7 +515,9 @@ contentForm.addEventListener("submit", async function (e) {
   if (data.endAt)
     data.endAt = firebase.firestore.Timestamp.fromDate(new Date(data.endAt));
 
-  const collection = db.collection(currentItemType + "s");
+  const collection = db
+    .collection(currentItemType + "s")
+    .where("schoolId", "==", schoolId);
 
   if (currentItemId) {
     await collection.doc(currentItemId).set(data, { merge: true });
@@ -532,6 +537,7 @@ confirmDeleteBtn.addEventListener("click", async function () {
     try {
       await db
         .collection(contentTypes[contentType].collection)
+        .where("schoolId", "==", schoolId)
         .doc(currentItemId)
         .delete();
       deleteModal.hide();

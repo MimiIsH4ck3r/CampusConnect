@@ -95,6 +95,7 @@ async function loadEvents() {
   try {
     await db
       .collection("events")
+      .where("schoolId", "==", schoolId)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -137,4 +138,9 @@ async function loadEvents() {
       "<p>We couldn't load past events. Please try again later.</p>";
   }
 }
-loadEvents();
+
+auth.onAuthStateChanged(async (user) => {
+  const userDoc = await db.collection("users").doc(user.uid).get();
+  if (userDoc) schoolId = userDoc.data().schoolId;
+  loadEvents();
+});

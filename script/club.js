@@ -58,6 +58,12 @@ async function loadClubData() {
     clubSchedule.textContent = clubData.schedule || "Schedule not specified";
     clubLeader.textContent = clubData.leader || "Leader not specified";
 
+    if (clubData.active === false) {
+      const joinButton = document.getElementById("join-club");
+      joinButton.toggleAttribute("disabled");
+      joinButton.textContent = "Club inactive";
+    }
+
     clubContactEmail.href = `mailto:${clubData.contactEmail || ""}`;
   } catch (error) {
     console.error("Error loading club data:", error);

@@ -7,6 +7,8 @@ let studentSlides = [];
 let activeSlideIndex = 0;
 let slideTimer = null;
 
+let schoolId = "0001";
+
 function setHeroState(isLoggedIn) {
   if (guestHero) {
     guestHero.classList.toggle("hidden", isLoggedIn);
@@ -85,8 +87,8 @@ function restartSlide() {
 async function loadStudentSlides() {
   try {
     const [clubSnapshot, eventSnapshot] = await Promise.all([
-      db.collection("clubs").where("active", "==", true).limit(3).get(),
-      db.collection("events").get(),
+      db.collection("clubs").where("schoolId", "==", schoolId).limit(3).get(),
+      db.collection("events").where("schoolId", "==", schoolId).get(),
     ]);
 
     const clubSlides = clubSnapshot.docs.map((doc) => {
@@ -168,16 +170,124 @@ async function loadStudentSlides() {
   }
 }
 
-auth.onAuthStateChanged((user) => {
+const clubListElement = document.getElementById("club-list");
+const eventListElement = document.getElementById("event-list");
+
+async function loadHomeClubs() {
+  try {
+    const snapshot = await db
+      .collection("clubs")
+      .where("schoolId", "==", schoolId)
+      .get();
+
+    const homeClubs = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    clubListElement.innerHTML = homeClubs
+      .map(
+        (club) =>
+          `
+      <div class="col-12 col-lg-4 col-md-6">
+        <div class="club-card">
+            <div class="club-card-top">
+              <div class="club-icon ${(club.category || "").toLowerCase()}">
+                <i class="fa-solid fa-${club.icon || "users"}"></i>
+              </div>
+              <span class="club-category">
+                ${club.category || "Uncategorized"}
+              </span>
+            </div>
+
+            <h3 class="card-title">${club.name || "Unnamed club"}</h3>
+
+            <p class="description">
+              ${club.shortDescription || "No description available."}
+            </p>
+
+            <div class="club-card-footer">
+              <span class="club-members">
+                <i class="fa-solid fa-user-group"></i>
+                ${club.memberCount ?? 0}  members
+              </span>
+
+              <a
+                href="club.html?id=${encodeURIComponent(club.id)}"
+                class="club-explore"
+                data-auth-required
+              >
+                Explore ↗
+              </a>
+            </div>
+          </div>
+      </div>`,
+      )
+      .join("");
+  } catch (error) {
+    console.error("Error loading home clubs:", error);
+  }
+}
+
+async function loadHomeEvents() {
+  try {
+    const snapshot = await db
+      .collection("events")
+      .where("schoolId", "==", schoolId)
+      .get();
+
+    const homeEvents = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    eventListElement.innerHTML = homeEvents
+      .map(
+        (event) =>
+          `
+            <div class="col-12 col-lg-4 col-md-6">
+              <div class="event-card">
+                <div class="event-date">
+                  <span class="event-month">${event.startAt.toDate().toLocaleString("en-US", { month: "short" }).toUpperCase()} ${event.startAt.toDate().getDate()}</span>
+                  <span>${event.startAt.toDate().getFullYear()}</span>
+                </div>
+
+                <div class="event-details">
+                  <span class="event-time">${event.startAt.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} - ${event.endAt.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                  <h3 class="card-title">${event.title}</h3>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="event-organizer">${event.organizer} ·</span>
+                    <span class="event-location">${event.location}</span>
+                  </div>
+                </div>
+
+                <a href="event.html?id=${event.id}" class="card-link" data-auth-required
+                  >View Event →</a
+                >
+              </div>
+            </div>
+      `,
+      )
+      .join("");
+  } catch (error) {
+    console.error("Error loading home events:", error);
+  }
+}
+
+auth.onAuthStateChanged(async (user) => {
   const loggedIn = !!user;
 
   setHeroState(loggedIn);
 
   if (loggedIn) {
+    const userDoc = await db.collection("users").doc(user.uid).get();
+    if (userDoc) schoolId = userDoc.data().schoolId;
+    loadHomeClubs();
     loadStudentSlides();
+    loadHomeEvents();
   } else {
     studentSlides = [];
     activeSlideIndex = 0;
+    schoolId = "0001";
 
     if (studentSlide) studentSlide.innerHTML = "";
     if (studentDots) studentDots.innerHTML = "";
