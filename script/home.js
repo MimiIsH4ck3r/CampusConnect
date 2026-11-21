@@ -2,6 +2,8 @@ const guestHero = document.getElementById("guest-hero");
 const studentHero = document.getElementById("student-hero");
 const studentSlide = document.getElementById("student-slide");
 const studentDots = document.getElementById("student-slide-dots");
+const guestContent = document.getElementById("guest-content");
+const studentContent = document.getElementById("student-content");
 
 let studentSlides = [];
 let activeSlideIndex = 0;
@@ -16,6 +18,14 @@ function setHeroState(isLoggedIn) {
 
   if (studentHero) {
     studentHero.classList.toggle("hidden", !isLoggedIn);
+  }
+
+  if (guestContent) {
+    guestContent.classList.toggle("hidden", isLoggedIn);
+  }
+
+  if (studentContent) {
+    studentContent.classList.toggle("hidden", !isLoggedIn);
   }
 }
 
@@ -82,6 +92,32 @@ function restartSlide() {
     activeSlideIndex = (activeSlideIndex + 1) % studentSlides.length;
     showSlide();
   }, 4000);
+}
+
+function getNewsDate(newsItem) {
+  return newsItem.publishedAt?.toDate() || new Date(0);
+}
+
+function sortNewsNewest(newsItems) {
+  return [...newsItems].sort((first, second) => {
+    const firstDate = getNewsDate(first)?.getTime() ?? 0;
+    const secondDate = getNewsDate(second)?.getTime() ?? 0;
+
+    return (
+      secondDate - firstDate ||
+      String(first.title || "").localeCompare(String(second.title || ""))
+    );
+  });
+}
+
+function formatNewsDate(newsItem) {
+  if (!newsItem.publishedAt) return "Date not available";
+
+  return newsItem.publishedAt.toDate().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 async function loadStudentSlides() {
@@ -172,6 +208,7 @@ async function loadStudentSlides() {
 
 const clubListElement = document.getElementById("club-list");
 const eventListElement = document.getElementById("event-list");
+const homeNewsList = document.getElementById("home-news-list");
 
 async function loadHomeClubs() {
   try {
@@ -228,6 +265,7 @@ async function loadHomeClubs() {
   }
 }
 
+const now = new Date();
 async function loadHomeEvents() {
   try {
     const snapshot = await db
@@ -239,7 +277,16 @@ async function loadHomeEvents() {
       id: doc.id,
       ...doc.data(),
     }));
-    eventListElement.innerHTML = homeEvents
+    const upcomingEvents = homeEvents
+      .filter((event) => event.endAt.toDate() >= now)
+      .sort((a, b) => a.startAt.toDate() - b.startAt.toDate());
+    if (upcomingEvents.length == 0) {
+      eventListElement.innerHTML =
+        '<p class="history-note">No events coming up.</p>';
+      return;
+    }
+
+    eventListElement.innerHTML = upcomingEvents
       .map(
         (event) =>
           `
@@ -269,7 +316,53 @@ async function loadHomeEvents() {
       )
       .join("");
   } catch (error) {
-    console.error("Error loading home events:", error);
+    console.log(error);
+  }
+}
+
+async function loadHomeNews() {
+  try {
+    const snapshot = await db
+      .collection("news")
+      .where("schoolId", "==", schoolId)
+      .get();
+
+    const newsItems = sortNewsNewest(
+      snapshot.docs
+        .map((doc) => ({ id: doc.id, ...doc.data() }))
+        .filter((newsItem) => newsItem.status === "published"),
+    ).slice(0, 3);
+
+    if (newsItems.length === 0) {
+      homeNewsList.innerHTML =
+        '<p class="news-note">No campus news to display yet.</p>';
+      return;
+    }
+
+    homeNewsList.innerHTML = newsItems
+      .map(
+        (newsItem) => `
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="news-card">
+              <span class="news-category">${newsItem.category || "Campus News"}</span>
+              <h3>${newsItem.title || "Untitled article"}</h3>
+              <p>${newsItem.summary || "Read the latest from your school."}</p>
+              <div class="news-meta">
+                <span>${newsItem.author ? `By ${newsItem.author}` : "CampusConnect"}</span>
+                <span>${formatNewsDate(newsItem)}</span>
+              </div>
+              <a class="news-card-link" href="./news-detail.html?id=${encodeURIComponent(newsItem.id)}" data-auth-required>
+                Read story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </article>
+          </div>
+        `,
+      )
+      .join("");
+  } catch (error) {
+    console.error("Error loading home news:", error);
+    homeNewsList.innerHTML =
+      '<p class="news-note">We couldn\'t load campus news. Please try again later.</p>';
   }
 }
 
@@ -284,6 +377,7 @@ auth.onAuthStateChanged(async (user) => {
     loadHomeClubs();
     loadStudentSlides();
     loadHomeEvents();
+    loadHomeNews();
   } else {
     studentSlides = [];
     activeSlideIndex = 0;

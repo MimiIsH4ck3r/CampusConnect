@@ -17,6 +17,7 @@
     />
     <link rel="stylesheet" href="./style/main.css" />
     <link rel="stylesheet" href="./style/home.css" />
+    <link rel="stylesheet" href="./style/news.css" />
   </head>
 
   <body>
@@ -53,6 +54,9 @@
               >
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="./news.html" data-auth-required>News</a>
+            </li>
+            <li class="nav-item">
               <button id="logout-button" class="nav-link btn" type="button">
                 Login
               </button>
@@ -71,17 +75,15 @@
 
             <h1>
               Where you see <br />
-              <span>events and clubs.</span>
+              <span>news, events, and clubs.</span>
             </h1>
 
             <p class="hero-description">
-              Discover school clubs, join activities, and find events that match
-              your interests.
+              Discover school news and clubs, join activities, and find events
+              that match your interests.
             </p>
 
-            <a href="./clubs.html" class="btn btn-primary" data-auth-required
-              >Clubs</a
-            >
+            <a href="./register.html" class="btn btn-primary">Get Started</a>
           </div>
 
           <div id="student-hero" class="col-lg-7 col-md-6 hero-text hidden">
@@ -97,39 +99,165 @@
         </div>
       </section>
 
-      <section id="clubs" class="content-section">
-        <div class="section-heading">
-          <div>
-            <h1>Explore Clubs</h1>
-            <p>Find a community that shares your interests.</p>
+      <div id="guest-content" class="hidden">
+        <section id="features" class="content-section">
+          <div class="section-heading">
+            <div>
+              <p class="label">CAMPUS LIFE, CONNECTED</p>
+              <h1>Everything happening at your school</h1>
+              <p>One place to find your community and get involved.</p>
+            </div>
           </div>
 
-          <a href="clubs.html" class="section-link" data-auth-required
-            >View All Clubs →</a
-          >
-        </div>
+          <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <article class="guest-card">
+                <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+                <h2>Find your community</h2>
+                <p>
+                  Explore student clubs and discover people who share your
+                  interests.
+                </p>
+              </article>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <article class="guest-card">
+                <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
+                <h2>Stay in the know</h2>
+                <p>
+                  Keep up with school events, activities, and what's coming up
+                  next.
+                </p>
+              </article>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <article class="guest-card">
+                <i class="fa-solid fa-school" aria-hidden="true"></i>
+                <h2>All in one place</h2>
+                <p>
+                  See your school's clubs, events, and updates in one place.
+                </p>
+              </article>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <article class="guest-card">
+                <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                <h2>Read campus news</h2>
+                <p>
+                  Catch the latest announcements and stories from your school.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
 
-        <div id="club-list" class="row g-4"></div>
-      </section>
-
-      <!-- Upcoming Events -->
-      <section id="events" class="content-section">
-        <div class="section-heading">
-          <div>
-            <h1>Upcoming Events</h1>
-            <p>See what's happening around school.</p>
+        <section id="school-setup" class="content-section">
+          <div class="section-heading">
+            <div>
+              <p class="label">GET STARTED</p>
+              <h1>Set up your school community</h1>
+              <p>It only takes a few steps to get connected.</p>
+            </div>
           </div>
 
-          <a href="events.html" class="section-link" data-auth-required
-            >View All Events →</a
+          <ol class="setup-steps">
+            <li>
+              <span>01</span>
+              <div>
+                <h2>Create your account</h2>
+                <p>Sign up with your name and email address.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <h2>Choose your school</h2>
+                <p>Select your school from the list during registration.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <h2>Explore and get involved</h2>
+                <p>
+                  Once logged in, browse your school's clubs, news, and upcoming
+                  events.
+                </p>
+              </div>
+            </li>
+          </ol>
+          <p class="school-help">
+            Don't see your school? Contact your school administrator to ask
+            about getting it added to CampusConnect.
+          </p>
+          <a href="./register.html" class="btn btn-primary"
+            >Create an Account</a
           >
-        </div>
+        </section>
 
-        <div id="event-list">
-          <!-- Example event. Load real event data from Firestore later. -->
-          <div class="row g-4"></div>
-        </div>
-      </section>
+        <section id="contact" class="content-section">
+          <div class="guest-contact">
+            <div>
+              <p class="label">NEED A HAND?</p>
+              <h1>We're here to help you get connected.</h1>
+              <p>
+                For questions about your school or account, reach out to your
+                school's CampusConnect administrator.
+              </p>
+            </div>
+            <a href="./login.html" class="btn btn-outline-light">Log In</a>
+          </div>
+        </section>
+      </div>
+
+      <div id="student-content" class="hidden">
+        <section id="clubs" class="content-section">
+          <div class="section-heading">
+            <div>
+              <h1>Explore Clubs</h1>
+              <p>Find a community that shares your interests.</p>
+            </div>
+
+            <a href="clubs.html" class="section-link" data-auth-required
+              >View All Clubs →</a
+            >
+          </div>
+
+          <div id="club-list" class="row g-4"></div>
+        </section>
+
+        <!-- Upcoming Events -->
+        <section id="events" class="content-section">
+          <div class="section-heading">
+            <div>
+              <h1>Upcoming Events</h1>
+              <p>See what's happening around school.</p>
+            </div>
+
+            <a href="events.html" class="section-link" data-auth-required
+              >View All Events →</a
+            >
+          </div>
+
+          <div id="event-list">
+            <!-- Example event. Load real event data from Firestore later. -->
+            <div class="row g-4"></div>
+          </div>
+        </section>
+
+        <section id="news" class="content-section">
+          <div class="section-heading">
+            <div>
+              <h1>Latest News</h1>
+              <p>Stay up to date with what's happening around campus.</p>
+            </div>
+            <a href="news.html" class="section-link" data-auth-required
+              >View All News →</a
+            >
+          </div>
+          <div id="home-news-list" class="row g-4"></div>
+        </section>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -142,6 +270,7 @@
 
         <nav class="footer-links" aria-label="Footer navigation">
           <a href="#hero">Back to Top</a>
+          <a href="news.html" data-auth-required>News</a>
           <a href="login.html">Log In</a>
           <a href="register.html">Sign Up</a>
         </nav>

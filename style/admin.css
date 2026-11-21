@@ -430,22 +430,122 @@ body {
   color: var(--red);
 }
 
-.admin-modal {
+/* ==========================
+   ADMIN MODAL
+========================== */
+
+#admin-content-modal .modal-content {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-.admin-modal .modal-header {
+/* Header */
+#admin-content-modal .modal-header {
   border-bottom: 1px solid var(--border);
 }
 
-.admin-modal .modal-title {
-  font-size: 1.2rem;
+#admin-content-modal .btn-close {
+  filter: invert(1);
 }
 
-.admin-modal .modal-body {
-  padding: 25px;
+/* Body */
+#admin-content-modal .modal-body {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Footer */
+#admin-content-modal .modal-footer {
+  border-top: 1px solid var(--border);
+}
+
+#admin-content-modal .form-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+#admin-content-modal .form-control,
+#admin-content-modal .form-select {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+#admin-content-modal .form-control::placeholder {
+  color: var(--muted);
+}
+
+#admin-content-modal .form-control:focus,
+#admin-content-modal .form-select:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+#admin-content-modal .form-select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+#admin-content-modal .form-check-input {
+  background-color: var(--bg);
+  border-color: var(--border);
+}
+
+#admin-content-modal .form-check-input:checked {
+  background-color: var(--purple);
+  border-color: var(--purple);
+}
+
+#admin-content-modal .btn-primary {
+  background-color: var(--purple);
+  border-color: var(--purple);
+  color: var(--text-dark);
+}
+
+#admin-content-modal .btn-primary:hover {
+  background-color: var(--purple-dark);
+  border-color: var(--purple-dark);
+}
+
+#admin-content-modal .btn-secondary {
+  background-color: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+#admin-content-modal .btn-secondary:hover {
+  background-color: var(--border);
+}
+
+#admin-content-modal .modal-dialog {
+  height: calc(100% - 2rem);
+}
+
+#admin-content-modal .modal-content {
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+#admin-content-modal #admin-content-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+#admin-content-modal .modal-header,
+#admin-content-modal .modal-footer {
+  flex-shrink: 0;
+}
+
+#admin-content-modal .modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto !important;
 }
 
 .form-actions {
@@ -454,10 +554,6 @@ body {
   gap: 10px;
   margin-top: 25px;
 }
-
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
 
 @media (max-width: 1000px) {
   .stats-grid {

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus News | CampusConnect</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/news.css" />
+  </head>
+
+  <body data-auth-required="true" id="top">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a href="index.html" class="navbar-brand">CampusConnect</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./clubs.html" data-auth-required>
+                Clubs
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./events.html" data-auth-required>
+                Events
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="./news.html"
+                data-auth-required
+                aria-current="page"
+              >
+                News
+              </a>
+            </li>
+            <li class="nav-item">
+              <button id="logout-button" class="nav-link btn" type="button">
+                Login
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="news-heading">
+        <div class="container">
+          <p class="label">CAMPUS CONNECTED</p>
+          <h1>News from <span>your school.</span></h1>
+          <p>Announcements, stories, and updates from around campus.</p>
+        </div>
+      </section>
+
+      <div class="container news-content">
+        <section class="news-section" aria-labelledby="featured-news-heading">
+          <div class="section-heading">
+            <div>
+              <h2 id="featured-news-heading">The latest</h2>
+              <p>Catch up on the newest campus story.</p>
+            </div>
+          </div>
+          <article id="featured-news" class="featured-news" hidden>
+            <div class="featured-news-copy">
+              <span id="featured-news-category" class="news-category"></span>
+              <h3 id="featured-news-title"></h3>
+              <p id="featured-news-summary"></p>
+              <div class="news-meta">
+                <span id="featured-news-author"></span>
+                <span id="featured-news-date"></span>
+              </div>
+              <a id="featured-news-link" class="btn btn-primary">
+                Read the story
+              </a>
+            </div>
+            <div class="featured-news-art" aria-hidden="true">
+              <i class="fa-regular fa-newspaper"></i>
+            </div>
+          </article>
+          <p id="no-featured-news" class="news-note" role="status" hidden>
+            No published news yet. Check back soon.
+          </p>
+        </section>
+
+        <section class="news-section" aria-labelledby="more-news-heading">
+          <div class="section-heading">
+            <div>
+              <h2 id="more-news-heading">More campus news</h2>
+              <p>Browse recent announcements and past stories.</p>
+            </div>
+          </div>
+          <div id="news-list" class="row g-4" role="status"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <div>
+          <h2>CampusConnect</h2>
+          <p>Find your people. Find your thing.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#top">Back to Top</a>
+          <a href="login.html">Log In</a>
+          <a href="register.html">Sign Up</a>
+        </nav>
+        <p class="copyright">&copy; 2026 CampusConnect</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="./script/firebase-config.js"></script>
+    <script src="./script/guest.js"></script>
+    <script src="./script/news.js"></script>
+  </body>
+</html>

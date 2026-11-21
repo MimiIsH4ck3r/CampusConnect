@@ -81,6 +81,85 @@
 .slide-dot.active {
   background: var(--purple);
 }
+
+/* Guest homepage */
+.guest-card {
+  height: 100%;
+  padding: 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.guest-card > i {
+  margin-bottom: 1rem;
+  color: var(--purple);
+  font-size: 1.75rem;
+}
+
+.guest-card h2,
+.setup-steps h2 {
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.guest-card p,
+.setup-steps p {
+  margin-bottom: 0;
+}
+
+.setup-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.setup-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.setup-steps li > span {
+  color: var(--purple);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.setup-steps h2 {
+  margin-bottom: 0.5rem;
+}
+
+.school-help {
+  margin-bottom: 1.25rem;
+}
+
+.guest-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--surface-highlight);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.guest-contact h1 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.guest-contact p:last-child {
+  margin-bottom: 0;
+}
+
 /* Club cards */
 .club-card {
   display: flex;
@@ -113,7 +192,6 @@
   justify-content: center;
   border-radius: 17px;
   font-size: 24px;
-
   background-color: #302b4a;
   color: #b6a2ff;
 }
@@ -252,5 +330,15 @@
 
   .event-item > .card-link {
     margin-left: calc(75px + 1rem);
+  }
+
+  .setup-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .guest-contact {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1.5rem;
   }
 }
