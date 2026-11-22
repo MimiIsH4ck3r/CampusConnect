@@ -1,6 +1,7 @@
 const featuredNewsElement = document.getElementById("featured-news");
 const noFeaturedNews = document.getElementById("no-featured-news");
 const newsList = document.getElementById("news-list");
+schoolId = "0001";
 
 function getNewsDate(newsItem) {
   return newsItem.publishedAt?.toDate() || new Date(0);
@@ -31,11 +32,11 @@ async function loadNews() {
     const snapshot = await db
       .collection("news")
       .where("schoolId", "==", userDoc.data().schoolId)
+      .where("status", "==", "published")
       .get();
 
     const publishedNews = snapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter((newsItem) => newsItem.status === "published")
       .sort((a, b) => b.publishedAt.toDate() - a.publishedAt.toDate());
 
     if (publishedNews.length === 0) {
@@ -102,6 +103,26 @@ async function loadNews() {
   }
 }
 
-auth.onAuthStateChanged((user) => {
-  if (user) loadNews();
+auth.onAuthStateChanged(async (user) => {
+  if (!user) {
+    window.location.href = "./login.html";
+    return;
+  }
+  try {
+    const userDoc = await db.collection("users").doc(user.uid).get();
+    if (!userDoc.exists) {
+      window.location.href = "./login.html";
+      return;
+    }
+
+    schoolId = userDoc.data().schoolId;
+    if (!schoolId) {
+      console.error("User has no school assigned.");
+      return;
+    }
+
+    loadNews();
+  } catch (error) {
+    console.error("Error loading user profile:", error);
+  }
 });

@@ -69,4 +69,6 @@ async function loadClubData() {
     console.error("Error loading club data:", error);
   }
 }
-loadClubData();
+auth.onAuthStateChanged((user) => {
+  if (user) loadClubData();
+});

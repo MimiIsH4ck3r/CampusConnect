@@ -1,3 +1,5 @@
+let schoolId = "0001";
+
 const upcomingContainer = document
   .getElementById("upcoming-events")
   .getElementsByClassName("event-timeline")[0];
@@ -140,7 +142,25 @@ async function loadEvents() {
 }
 
 auth.onAuthStateChanged(async (user) => {
-  const userDoc = await db.collection("users").doc(user.uid).get();
-  if (userDoc) schoolId = userDoc.data().schoolId;
-  loadEvents();
+  if (!user) {
+    window.location.href = "./login.html";
+    return;
+  }
+  try {
+    const userDoc = await db.collection("users").doc(user.uid).get();
+    if (!userDoc.exists) {
+      window.location.href = "./login.html";
+      return;
+    }
+
+    schoolId = userDoc.data().schoolId;
+    if (!schoolId) {
+      console.error("User has no school assigned.");
+      return;
+    }
+
+    loadEvents();
+  } catch (error) {
+    console.error("Error loading user profile:", error);
+  }
 });

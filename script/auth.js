@@ -9,21 +9,42 @@ function showMessage(msg, isError = true) {
 
 function getPostLoginDestination() {
   const returnTo = new URLSearchParams(window.location.search).get("returnTo");
-  return returnTo || "./index.html";
+  if (!returnTo) {
+    return "./index.html";
+  }
+
+  try {
+    const destination = new URL(returnTo, window.location.origin);
+    if (destination.origin !== window.location.origin) {
+      return "./index.html";
+    }
+    return destination.pathname + destination.search + destination.hash;
+  } catch (error) {
+    console.error("Invalid redirect destination:", error);
+    return "./index.html";
+  }
 }
 
-function loginUser() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+async function loginUser() {
+  try {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-  auth.signInWithEmailAndPassword(email, password).then((userCredential) => {
-    const user = userCredential.user;
-    console.log("User logged in:", user);
+    const userCredential = await auth.signInWithEmailAndPassword(
+      email,
+      password,
+    );
+
+    console.log("User logged in:", userCredential.user);
     showMessage("Login successful!", false);
+
     setTimeout(() => {
       window.location.href = getPostLoginDestination();
     }, 1500);
-  });
+  } catch (error) {
+    console.error("Error logging in:", error);
+    showMessage(error.message);
+  }
 }
 
 async function registerUser() {
@@ -62,6 +83,7 @@ async function registerUser() {
       role: 0,
       schoolId: schoolId,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      approved: true,
     });
 
     showMessage("Registration successful!", false);
@@ -85,8 +107,10 @@ async function loadSchools() {
 
   try {
     const querySnapshot = await db.collection("school").get();
-    const schoolList = querySnapshot.docs.map((doc) => doc.data());
-
+    const schoolList = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
     if (schoolList.length === 0) {
       schoolButton.textContent = "No schools available";
       schoolButton.disabled = true;

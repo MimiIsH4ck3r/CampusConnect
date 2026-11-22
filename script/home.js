@@ -325,12 +325,11 @@ async function loadHomeNews() {
     const snapshot = await db
       .collection("news")
       .where("schoolId", "==", schoolId)
+      .where("status", "==", "published")
       .get();
 
     const newsItems = sortNewsNewest(
-      snapshot.docs
-        .map((doc) => ({ id: doc.id, ...doc.data() }))
-        .filter((newsItem) => newsItem.status === "published"),
+      snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
     ).slice(0, 3);
 
     if (newsItems.length === 0) {

@@ -76,4 +76,6 @@ async function loadEventDetails() {
     console.error("Error loading event data:", error);
   }
 }
-loadEventDetails();
+auth.onAuthStateChanged((user) => {
+  if (user) loadEventDetails();
+});
